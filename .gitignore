@@ -1,0 +1,13 @@
+node_modules/
+dist/aihot-reader-extension/
+extension/_metadata/
+*.mp3
+probe-*.mjs
+probe-*.html
+probe-*.md
+test-tts.mp3
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/

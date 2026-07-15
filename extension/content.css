@@ -1,0 +1,147 @@
+/* AI HOT 页内悬浮播放条 — 不复制列表，只控制朗读 */
+#aihot-reader-root {
+  all: initial;
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2147483646;
+  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  font-size: 13px;
+  color: #e8eefc;
+  line-height: 1.35;
+}
+
+#aihot-reader-root * {
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+#aihot-reader-root .ar-panel {
+  width: min(360px, calc(100vw - 32px));
+  background: rgba(12, 18, 32, 0.94);
+  border: 1px solid #2a3a55;
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+  padding: 12px 12px 10px;
+}
+
+#aihot-reader-root .ar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+
+#aihot-reader-root .ar-title {
+  font-weight: 700;
+  font-size: 13px;
+  color: #3dd6c6;
+}
+
+#aihot-reader-root .ar-min {
+  background: transparent;
+  border: none;
+  color: #93a0b8;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 6px;
+}
+
+#aihot-reader-root .ar-now {
+  font-size: 12.5px;
+  color: #e8eefc;
+  min-height: 2.6em;
+  margin-bottom: 8px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+#aihot-reader-root .ar-status {
+  font-size: 11px;
+  color: #93a0b8;
+  margin-bottom: 8px;
+}
+
+#aihot-reader-root .ar-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+#aihot-reader-root button.ar-btn {
+  background: #182338;
+  color: #e8eefc;
+  border: 1px solid #2a3a55;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#aihot-reader-root button.ar-btn:hover {
+  border-color: #5b8cff;
+}
+
+#aihot-reader-root button.ar-btn.primary {
+  background: #5b8cff;
+  border-color: #5b8cff;
+  color: #fff;
+}
+
+#aihot-reader-root button.ar-btn.accent {
+  background: #1a6b62;
+  border-color: #3dd6c6;
+}
+
+#aihot-reader-root select,
+#aihot-reader-root input[type="range"] {
+  background: #182338;
+  color: #e8eefc;
+  border: 1px solid #2a3a55;
+  border-radius: 6px;
+  padding: 4px 6px;
+  font-size: 12px;
+}
+
+#aihot-reader-root label.ar-lab {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #93a0b8;
+  font-size: 11px;
+}
+
+#aihot-reader-root .ar-collapsed {
+  width: auto;
+  padding: 10px 14px;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 700;
+  color: #3dd6c6;
+}
+
+#aihot-reader-root .ar-hint {
+  font-size: 11px;
+  color: #6b7a94;
+  margin-top: 4px;
+}
+
+/* 高亮正在读的卡片 */
+.timeline-card.aihot-reading,
+.m-row.aihot-reading,
+article.aihot-reading {
+  outline: 2px solid #3dd6c6 !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(61, 214, 198, 0.18) !important;
+  border-radius: 10px;
+}
+
+.timeline-item.aihot-reading-item {
+  scroll-margin-bottom: 120px;
+}

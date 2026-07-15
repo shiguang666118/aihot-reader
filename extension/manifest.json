@@ -1,0 +1,60 @@
+{
+  "manifest_version": 3,
+  "name": "AI HOT 朗读器",
+  "version": "1.3.2",
+  "description": "在 AI HOT 网页上悬浮播放：全部动态 / AI 日报 / 详情。Edge 神经网络 + 系统语音兜底。",
+  "action": {
+    "default_title": "显示/聚焦 AI HOT 朗读条",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "permissions": [
+    "storage",
+    "scripting",
+    "sidePanel",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "host_permissions": [
+    "https://aihot.virxact.com/*",
+    "https://speech.platform.bing.com/*",
+    "wss://speech.platform.bing.com/*",
+    "http://127.0.0.1:8765/*"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "edge_tts_headers",
+        "enabled": true,
+        "path": "rules_edge_tts.json"
+      }
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://aihot.virxact.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

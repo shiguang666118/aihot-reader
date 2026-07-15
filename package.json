@@ -1,0 +1,16 @@
+{
+  "name": "aihot-reader",
+  "version": "1.0.0",
+  "description": "给 [AI HOT 全部动态](https://aihot.virxact.com/all) 用的本地朗读工具。",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "keywords": ["aihot", "tts", "reader"],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "msedge-tts": "^2.0.7"
+  }
+}

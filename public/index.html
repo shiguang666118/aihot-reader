@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI HOT 朗读器</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="brand">
+        <h1>AI HOT 朗读器</h1>
+        <p class="sub">只读标题 + AI 摘要 · 跳过导航/标签/图片噪声</p>
+      </div>
+      <div class="toolbar">
+        <label>
+          模式
+          <select id="mode">
+            <option value="all" selected>全部动态</option>
+            <option value="selected">精选</option>
+          </select>
+        </label>
+        <label>
+          类型
+          <select id="category">
+            <option value="">全部类型</option>
+            <option value="ai-models">模型</option>
+            <option value="ai-products">产品</option>
+            <option value="industry">行业</option>
+            <option value="paper">论文</option>
+            <option value="tip">技巧/观点</option>
+          </select>
+        </label>
+        <label>
+          最低分
+          <input id="minScore" type="number" min="0" max="100" value="0" step="1" />
+        </label>
+        <label>
+          条数
+          <select id="take">
+            <option value="20">20</option>
+            <option value="40" selected>40</option>
+            <option value="60">60</option>
+            <option value="100">100</option>
+          </select>
+        </label>
+        <button id="btnLoad" class="primary">刷新列表</button>
+      </div>
+    </header>
+
+    <section class="player">
+      <div class="player-main">
+        <div id="nowPlaying" class="now-playing">尚未开始 · 点「从当前播」或「播全部」</div>
+        <div class="controls">
+          <button id="btnPrev" title="上一条">⏮</button>
+          <button id="btnPlay" class="primary big" title="播放/暂停">▶ 播放</button>
+          <button id="btnNext" title="下一条">⏭</button>
+          <button id="btnStop" title="停止">⏹</button>
+          <button id="btnPlayAll" class="accent">播全部</button>
+          <button id="btnPlayFrom">从当前播</button>
+        </div>
+        <div class="sliders">
+          <label>
+            引擎
+            <select id="engine">
+              <option value="edge" selected>Edge 神经网络（推荐）</option>
+              <option value="browser">浏览器自带（较差）</option>
+            </select>
+          </label>
+          <label>语速 <input id="rate" type="range" min="0.6" max="1.6" step="0.05" value="1" /> <span id="rateVal">1.0×</span></label>
+          <label>音量 <input id="volume" type="range" min="0" max="1" step="0.05" value="1" /> <span id="volVal">100%</span></label>
+          <label>
+            朗读内容
+            <select id="speakMode">
+              <option value="title_summary" selected>标题 + 摘要</option>
+              <option value="summary">仅摘要</option>
+              <option value="title">仅标题</option>
+              <option value="full">全文（标题+摘要+原文）</option>
+            </select>
+          </label>
+          <label>
+            声音
+            <select id="voice"></select>
+          </label>
+        </div>
+      </div>
+      <div class="meta-row">
+        <span id="status">就绪</span>
+        <span id="progress">0 / 0</span>
+      </div>
+    </section>
+
+    <section class="list-wrap">
+      <div class="list-head">
+        <h2>条目列表</h2>
+        <div class="list-actions">
+          <input id="filter" type="search" placeholder="本地筛选标题/摘要…" />
+          <button id="btnMore" disabled>加载更多</button>
+        </div>
+      </div>
+      <div id="list" class="list"></div>
+      <p id="empty" class="empty hidden">没有条目。点「刷新列表」拉取 AI HOT 数据。</p>
+    </section>
+
+    <footer class="foot">
+      数据来自 <a href="https://aihot.virxact.com/all" target="_blank" rel="noopener">aihot.virxact.com</a>
+      公开 API · 默认 Microsoft Edge 神经网络 TTS（晓晓等）
+    </footer>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
