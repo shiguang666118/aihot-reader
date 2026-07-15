@@ -532,9 +532,13 @@
           state.speaking = false;
           state.engine = null;
           setPlayLabel("▶");
-          if (state.queueMode) advance();
-          else setStatus("本条读完（系统语音）");
-          finish(() => resolve());
+          if (state.queueMode) {
+            finish(() => resolve());
+            advance();
+          } else {
+            setStatus("本条读完（系统语音）");
+            finish(() => resolve());
+          }
           return;
         }
 
@@ -692,7 +696,13 @@
         state.speaking = false;
         state.engine = null;
         setPlayLabel("▶");
-        setStatus("播放失败，可再点一次");
+        // 单条失败时连播模式下跳过到下一条，避免整页卡死
+        if (state.queueMode) {
+          setStatus("本条播放失败，跳过…");
+          setTimeout(() => advance(), 400);
+        } else {
+          setStatus("播放失败，可再点一次");
+        }
       };
 
       await audio.play();
@@ -794,24 +804,37 @@
       if (resumeAll()) return;
       // 暂停态已丢（无音频对象）→ 当重新播放
     }
-    // 未在播：新开播（会 hardStop 旧会话）
-    state.queueMode = false;
+    // 未在播：从当前条连播到页尾（⏹ 才停队列）
+    state.queueMode = true;
     speakCurrent();
   }
 
   function advance() {
+    if (!state.queueMode) {
+      state.speaking = false;
+      state.engine = null;
+      setPlayLabel("▶");
+      setStatus("本条读完");
+      return;
+    }
     if (state.index + 1 >= state.items.length) {
       state.queueMode = false;
       state.speaking = false;
       state.engine = null;
-      setStatus("本页读完");
+      setStatus("本页已全部读完");
       setPlayLabel("▶");
       return;
     }
-    state.index += 1;
+    const nextIndex = state.index + 1;
+    // 先记下要连播，再开新会话（speakCurrent 会 bump session）
+    state.queueMode = true;
+    state.index = nextIndex;
+    setStatus(`下一条 ${nextIndex + 1}/${state.items.length}…`);
     setTimeout(() => {
+      // 保持连播标志，避免中途被清掉
+      state.queueMode = true;
       speakCurrent();
-    }, 200);
+    }, 280);
   }
 
   // ---------- UI ----------
@@ -850,7 +873,7 @@
           <button type="button" class="ar-btn primary" id="ar-play">▶</button>
           <button type="button" class="ar-btn" id="ar-next">⏭</button>
           <button type="button" class="ar-btn" id="ar-stop">⏹</button>
-          <button type="button" class="ar-btn accent" id="ar-all">从本页播</button>
+          <button type="button" class="ar-btn accent" id="ar-all" title="从第 1 条连播到最后">从头播</button>
         </div>
         <div class="ar-row">
           <label class="ar-lab">内容
@@ -869,7 +892,7 @@
           <label class="ar-lab">速 <input id="ar-rate" type="range" min="0.6" max="1.5" step="0.05" value="1" /></label>
           <label class="ar-lab">量 <input id="ar-vol" type="range" min="0" max="1" step="0.05" value="1" /></label>
         </div>
-        <div class="ar-hint">换声音/语速/内容模式会立刻用新设置重念当前条 · 音量实时</div>
+        <div class="ar-hint">▶ 从当前连播 · 从头播=从第1条 · ⏹停止 · 换声/语速会重念当前条</div>
       </div>
     `;
     document.documentElement.appendChild(root);
@@ -944,7 +967,9 @@
           setStatus(isDailyPage() ? "日报没有条目" : "本页没有条目");
           return;
         }
+        state.index = 0;
         state.queueMode = true;
+        highlightCurrent();
         speakCurrent();
       })();
     });

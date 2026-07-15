@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "AI HOT 朗读器",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "在 AI HOT 网页上悬浮播放：全部动态 / AI 日报 / 详情。Edge 神经网络 + 系统语音兜底。",
   "action": {
     "default_title": "显示/聚焦 AI HOT 朗读条",

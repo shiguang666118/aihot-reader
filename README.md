@@ -35,12 +35,12 @@
 5. 打开 https://aihot.virxact.com/all 或 `/daily`，**刷新页面**
 6. 右下角出现 **「AI HOT 朗读」**
 
-详细说明见 [`extension/给别人安装.txt`](extension/给别人安装.txt)（打包时生成）与 [`怎么给别人用.md`](怎么给别人用.md)。
+详细安装见 [Releases](https://github.com/shiguang666118/aihot-reader/releases) 与 `extension/给别人安装.txt`。
 
 ### 使用
 
 1. 在网页上点某条资讯（会高亮）
-2. 点悬浮条 **▶**，或 **「从本页播」** 连续听
+2. 点悬浮条 **▶** 从当前条连播到页尾；**「从头播」** 从第 1 条开始；**⏹** 停止
 3. 音色：晓晓 / 云希 / 云扬 等；内容：标题+摘要 / 仅摘要 / 全文
 
 ### 权限说明
@@ -80,7 +80,6 @@ aihot-reader/
 ├── public/             # 本地网页版 UI
 ├── server.mjs          # 本地 API 代理 + TTS
 ├── package.json
-└── 怎么给别人用.md
 ```
 
 ## 已知限制

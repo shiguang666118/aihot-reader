@@ -1,32 +1,9 @@
-# AI HOT 朗读器 · 安装（给使用者）
+# AI HOT 朗读器 · 安装
 
-## 适合谁
-给朋友 / 同事本地安装用。不需要编程，不需要开 Node 服务。
+1. 下载 Release 里的 zip 并解压
+2. chrome://extensions 或 edge://extensions → 开发者模式 → 加载已解压
+3. 打开 https://aihot.virxact.com/all 或 /daily 并刷新
+4. 右下角「AI HOT 朗读」：▶ 连播当前起，从头播=从第1条，⏹停止
 
-## Chrome 安装
-1. 解压本 zip，得到 aihot-reader-extension 文件夹（里面要有 manifest.json）
-2. 地址栏打开：chrome://extensions
-3. 右上角打开「开发者模式」
-4. 点「加载已解压的扩展程序」
-5. 选中解压后的文件夹
-6. 打开 https://aihot.virxact.com/all 或 /daily ，刷新页面
-7. 右下角出现「AI HOT 朗读」即可用
-
-## Edge 安装
-1. 同上解压
-2. 打开 edge://extensions
-3. 开发人员模式 → 加载解压缩的扩展
-4. 选中文件夹后打开 AI HOT 网页刷新
-
-## 使用
-- 列表继续在网页上看
-- 点某条资讯选中，再点播放条 ▶
-- 或点「从本页播」连续听
-- AI 日报页同样支持
-- 换声音/语速会立刻用新设置重念当前条
-
-## 注意
-- 需要联网（拉资讯 + 语音）
-- 这是开发者模式安装，浏览器可能提示「停用开发者模式扩展」——点取消/继续使用即可
-
-项目主页：见 GitHub 仓库 README
+需要联网。仅适配 aihot.virxact.com。
+https://github.com/shiguang666118/aihot-reader
