@@ -22,7 +22,7 @@
 
 ### 1. 下载
 
-- 打开本仓库 [Releases](../../releases)（若已发布），下载最新  
+- 打开 [Releases](https://github.com/shiguang666118/aihot-reader/releases) 下载最新  
   `aihot-reader-extension-v*.zip`  
 - 或克隆本仓库，使用目录：`extension/`
 
